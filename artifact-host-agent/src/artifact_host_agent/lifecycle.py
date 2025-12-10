@@ -7,7 +7,7 @@ from .web_server import ArtifactWebServer, set_web_server
 logger = logging.getLogger(__name__)
 
 
-def init_function(config: Optional[Dict[str, Any]] = None) -> None:
+def init_function(host_component: Any, config: Optional[Dict[str, Any]] = None) -> None:
     """
     Initialize and start the web server when the agent starts.
 
@@ -15,6 +15,7 @@ def init_function(config: Optional[Dict[str, Any]] = None) -> None:
     artifact hosting web server.
 
     Args:
+        host_component: The host component (not used)
         config: Configuration dictionary with optional parameters:
             - port: Port to bind the web server (default: 8080)
             - host: Host to bind to (default: 127.0.0.1)
@@ -60,13 +61,14 @@ def init_function(config: Optional[Dict[str, Any]] = None) -> None:
         raise
 
 
-def cleanup_function(config: Optional[Dict[str, Any]] = None) -> None:
+def cleanup_function(host_component: Any, config: Optional[Dict[str, Any]] = None) -> None:
     """
     Cleanup function called when the agent shuts down.
 
     Attempts to gracefully stop the web server.
 
     Args:
+        host_component: The host component (not used)
         config: Configuration dictionary (not currently used)
     """
     logger.info("[ArtifactHost:cleanup] Shutting down artifact hosting web server")

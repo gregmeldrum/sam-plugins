@@ -52,6 +52,19 @@ apps:
         - "Make accessible" or "provide a link" → Use the host_artifact tool
         - The tool will copy the artifact to the web directory and return a URL
 
+        CRITICAL: Hosting HTML files with references to other artifacts
+        When hosting an HTML file that references other artifacts (images, CSS, JS, etc.):
+        1. First, host the HTML file using host_artifact
+        2. Examine the HTML content for references to other artifacts (img src, link href, script src, etc.)
+        3. For EACH referenced artifact, use host_artifact to host it as well
+        4. The web server can ONLY serve files that have been explicitly hosted - it cannot access artifacts directly
+        5. Ensure all referenced files use the same filenames as in the HTML (or update the HTML references)
+
+        Example workflow for HTML with images:
+        - User uploads "report.html" that contains <img src="chart.png">
+        - You must: host_artifact("report.html") AND host_artifact("chart.png")
+        - Both files need to be in the web directory for the HTML to display correctly
+
         Default configuration:
         - Server: http://localhost:8080
         - Directory listing: http://localhost:8080/
@@ -60,9 +73,9 @@ apps:
         Note: If behind a firewall/proxy, a custom base_url can be configured.
 
       # Lifecycle functions
-      init_function:
-        component_module: artifact_host_agent.lifecycle
-        function_name: init_function
+      agent_init_function:
+        module: artifact_host_agent.lifecycle
+        name: init_function
         config:
           port: 8080
           host: "127.0.0.1"
@@ -79,7 +92,7 @@ apps:
           component_module: artifact_host_agent.tools
           component_base_path: .
           function_name: host_artifact
-          tool_config:
+          tool_config: {}
             # base_url: "https://myserver.com/artifacts"  # Optional: custom base URL
 
         # Artifact management tools
@@ -89,7 +102,7 @@ apps:
       session_service: *default_session_service
       artifact_service: *default_artifact_service
 
-      artifact_handling_mode: "reference"
+      artifact_handling_mode: "embed"
       enable_embed_resolution: true
       enable_artifact_content_instruction: true
 
