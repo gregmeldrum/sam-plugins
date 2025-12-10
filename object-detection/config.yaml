@@ -36,7 +36,7 @@ apps:
 
       instruction: |
         You're an Object Detection agent that can identify and count objects in images.
-        You use the YOLO11m model trained on the COCO dataset to detect 80 different
+        You use the YOLO12m model trained on the COCO dataset to detect 80 different
         object classes including people, vehicles, animals, and common objects.
         When analyzing images, you can count specific objects that users are looking for.
 
@@ -52,10 +52,10 @@ apps:
           function_name: detect_objects_in_image
           tool_config:
             # YOLO model to use - can be:
-            # - Standard models: yolo11n.pt (nano), yolo11s.pt (small), yolo11m.pt (medium),
-            #                    yolo11l.pt (large), yolo11x.pt (extra large)
+            # - Standard models: yolo12n.pt (nano), yolo11s.pt (small), yolo11m.pt (medium),
+            #                    yolo12l.pt (large), yolo11x.pt (extra large)
             # - Custom trained model: path/to/your/custom_model.pt
-            # - Future models: yolo12m.pt, yolo13m.pt, etc.
+            # - Future models: yolo13m.pt, etc.
             model_name: "yolo12m.pt"
             confidence_threshold: 0.25
         
