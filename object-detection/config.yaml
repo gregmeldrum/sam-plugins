@@ -56,7 +56,7 @@ apps:
             #                    yolo11l.pt (large), yolo11x.pt (extra large)
             # - Custom trained model: path/to/your/custom_model.pt
             # - Future models: yolo12m.pt, yolo13m.pt, etc.
-            model_name: "yolo11m.pt"
+            model_name: "yolo12m.pt"
             confidence_threshold: 0.25
         
       session_service: *default_session_service
