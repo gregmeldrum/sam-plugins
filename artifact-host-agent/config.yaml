@@ -79,7 +79,7 @@ apps:
           component_module: artifact_host_agent.tools
           component_base_path: .
           function_name: host_artifact
-          tool_config:
+          tool_config: {}
             # base_url: "https://myserver.com/artifacts"  # Optional: custom base URL
 
         # Artifact management tools
