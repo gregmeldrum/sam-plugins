@@ -19,6 +19,12 @@ A collection of specialized agent plugins for Solace Agent Mesh (SAM), providing
 ### Web Agent
 **Web search and request agent** that fetches web content and searches the web. Uses DuckDuckGo for text, image, video, and news searches. Includes built-in web request tool for fetching and processing web pages. Returns structured search results and web content as JSON artifacts.
 
+### TTS Agent
+**Text-to-speech agent** powered by Microsoft's VibeVoice framework. Converts text to natural-sounding speech with local inference. Generates high-quality audio artifacts from text input, supporting multiple voices and languages. All processing runs locally for privacy.
+
+### Video Editor Agent
+**Video editing agent** using FFmpeg for video manipulation. Provides tools for trimming, concatenating, format conversion, adding audio, applying filters, and extracting frames. Handles complex video processing tasks through a simple tool interface. Supports all FFmpeg-compatible formats. **Requires FFmpeg to be installed** on the system.
+
 ## Installing plugins using pip
 
 Edit the plugin_list to control which plugins get installed
