@@ -25,13 +25,33 @@ A collection of specialized agent plugins for Solace Agent Mesh (SAM), providing
 ### Video Editor Agent
 **Video editing agent** using FFmpeg for video manipulation. Provides tools for trimming, concatenating, format conversion, adding audio, applying filters, and extracting frames. Handles complex video processing tasks through a simple tool interface. Supports all FFmpeg-compatible formats. **Requires FFmpeg to be installed** on the system.
 
+## Pre-download Models (Recommended)
+
+For agents using local models, download the models first to avoid delays during agent startup:
+
+### Install Hugging Face CLI
+
+```bash
+pip install "huggingface_hub[cli]"
+```
+
+### Download Models
+
+```bash
+# For Local MLX Vision agent
+hf download mlx-community/Qwen3-VL-2B-Instruct-4bit
+
+# For Local TTS agent
+hf download microsoft/VibeVoice-Realtime-0.5B
+```
+
 ## Installing plugins using pip
 
 Edit the plugin_list to control which plugins get installed
 
-```
+```bash
 #!/bin/bash
-plugin_list=("web-agent" "artifact-host-agent" "imagemagick" "local-mlx-vision" "object-detection")
+plugin_list=("web-agent" "artifact-host-agent" "imagemagick" "local-mlx-vision" "local-tts" "video-editor-agent" "object-detection")
 
 for plugin in "${plugin_list[@]}"; do
     sam plugin install git+https://github.com/gregmeldrum/sam-plugins#subdirectory=${plugin}"
@@ -43,10 +63,10 @@ done
 
 Edit the plugin_list to control which plugins get installed
 
-```
+```bash
 #!/bin/bash
 
-plugin_list=("web-agent" "artifact-host-agent" "imagemagick" "local-mlx-vision" "object-detection")
+plugin_list=("web-agent" "artifact-host-agent" "imagemagick" "local-mlx-vision" "local-tts" "video-editor-agent" "object-detection")
 
 for plugin in "${plugin_list[@]}"; do
     sam plugin install git+https://github.com/gregmeldrum/sam-plugins#subdirectory=${plugin} --install-command "uv pip install git+https://github.com/gregmeldrum/sam-plugins#subdirectory=${plugin}"

@@ -53,9 +53,19 @@ sam plugin add vision-agent --plugin /path/to/local-mlx-vision/dist/local_mlx_vi
 
 Replace `vision-agent` with your desired agent name.
 
-### 3. Download the Model
+### 3. Download the Model (Recommended)
 
-The first time you run the agent, MLX will download the Qwen3-VL-2B-Instruct-4bit model (~2GB). This happens automatically.
+Pre-download the model to avoid delays during agent startup:
+
+```bash
+# Install Hugging Face CLI if not already installed
+pip install "huggingface_hub[cli]"
+
+# Download the Qwen3-VL model (~2GB)
+hf download mlx-community/Qwen3-VL-2B-Instruct-4bit
+```
+
+Alternatively, the model will download automatically on first use, but this may cause a delay during the first agent invocation.
 
 ## Usage
 
