@@ -159,8 +159,5 @@ sam.log
 *.tmp
 *.temp
 
-# YOLO model files
-*.pt
-
 # DB files
 *.db
